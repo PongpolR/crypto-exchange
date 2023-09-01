@@ -89,7 +89,7 @@ class CryptocurrencyController extends Controller
 
       // เพิ่มเงินให้เจ้าของเหรียญ
       $fiat_money = FiatMoney::find($crypto->user_id);
-      $fiat_money->amount = $user_fiat_money->amount + $crypto->price;
+      $fiat_money->amount = $fiat_money->amount + $crypto->price;
       $fiat_money->save();
 
       // อัพเดทเจ้าของเหรียญเป็นคนที่ซื้อล่าสุด
