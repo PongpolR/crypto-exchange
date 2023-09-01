@@ -1,66 +1,91 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Crypto-exchange
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Back-end Test
 
-## About Laravel
+## Installation & Setup
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Install project (require composer)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```bash
+  git clone https://github.com/PongpolR/crypto-exchange
+  cd crypto-exchange
+  composer install
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- สร้างไฟล์ .env
+```bash
+  สามารถ copy จากไฟล์ .env.example มาใช้ได้
+  (อย่าลืมเพิ่ม JWT_SECREAT และ JWT_EXPIRE_HOUR ใน .env)
+```
 
-## Learning Laravel
+- Run project
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+  php artisan serve
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Migration
+- สร้าง database ที่มีชื่อตรงกับ DB_DATABASE ใน .env
+- migrate เพื่อสร้างตาราง พร้อมกับ seed ข้อมูลตามคำสั่งด้านล่าง
+```bash
+  php artisan migrate:fresh --seed
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## API Endpoint
+ - คลิปทดสอบ API: ...
 
-## Laravel Sponsors
+- Register - สมัครสมาชิก (require: name, email, password, confirm_password)
+```bash
+  /api/register (method: POST)
+```
+- Login - เข้าสู่ระบบ (require: email, password)
+```bash
+  /api/login (method: POST)
+```
+- รายละเอียดผู้ใช้ที่อยู่ในระบบ
+```bash
+  /api/me (method: GET)
+```
+- รายละเอียดผู้ใช้ทั้งหมด
+```bash
+  /api/users (method: GET)
+```
+- รายละเอียดผู้ใช้คนนั้นๆ
+```bash
+  /api/user/{id} (method: GET) [id คือ id ของผู้ใช้ที่ต้องการเติมเงิน]
+```
+- รายละเอียดผู้ใช้ทั้งหมดพร้อมกับจำนวนเงิน (Fiat Money) ของผู้ใช้แต่ละคน
+```bash
+  /api/users/amount (method: GET)
+```
+- รายละเอียดผู้ใช้ทั้งหมดพร้อมกับ cryptocurrencies ที่ผู้ใช้แต่ละคนมี
+```bash
+  /api/users/crypto (method: GET)
+```
+- รายละเอียดผู้ใช้ทั้งหมดพร้อมกับ transactions ของผู้ใช้แต่ละคน
+```bash
+  /api/users/transactions (method: GET)
+```
+- เติมเงิน (Fiat Money) เข้าไอดีของผู้ใช้คนนั้นๆ
+```bash
+  /api/fiat_money/topup/{id} (method: PUT) [id คือ id ของผู้ใช้ที่ต้องการเข้าถึง]
+```
+- เติมเงิน (Fiat Money) เข้าไอดีของผู้ใช้คนนั้นๆ (require: amount *ใส่ใน params)
+```bash
+  /api/fiat_money/topup/{id} (method: PUT)
+```
+- รายละเอียด Cryptocurrency ทั้งหมด
+```bash
+  /api/cryptocurrency (method: GET)
+```
+- โอนเหรียญหรือ cryptocurrency ให้ผู้ใช้อื่น (require: with_user_id)
+```bash
+  /api/crypto/transfer/{id} (method: POST) [id คือ id ของ crypto ที่ต้องการโอน]
+```
+- ซื้อเหรียญหรือ cryptocurrency 
+```bash
+  /api/crypto/buy/{id} (method: POST) [id คือ id ของ crypto ที่ต้องการซื้อ]
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## ER Diagram
+- https://drive.google.com/file/d/1qL1YKQeQHwkTfVkASP9aLXwKxHI6a3BF/view?usp=sharing
