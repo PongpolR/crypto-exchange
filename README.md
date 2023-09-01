@@ -62,10 +62,6 @@ Back-end Test
 ```bash
   /api/users/crypto (method: GET)
 ```
-- รายละเอียดผู้ใช้ทั้งหมดพร้อมกับ transactions ของผู้ใช้แต่ละคน
-```bash
-  /api/users/transactions (method: GET)
-```
 - เติมเงิน (Fiat Money) เข้าไอดีของผู้ใช้คนนั้นๆ
 ```bash
   /api/fiat_money/topup/{id} (method: PUT) [id คือ id ของผู้ใช้ที่ต้องการเข้าถึง]
@@ -85,6 +81,10 @@ Back-end Test
 - ซื้อเหรียญหรือ cryptocurrency 
 ```bash
   /api/crypto/buy/{id} (method: POST) [id คือ id ของ crypto ที่ต้องการซื้อ]
+```
+- รายละเอียดผู้ใช้ทั้งหมดพร้อมกับ transactions ของผู้ใช้แต่ละคน
+```bash
+  /api/users/transactions (method: GET)
 ```
 
 ## ER Diagram
