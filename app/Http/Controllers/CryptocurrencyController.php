@@ -79,7 +79,6 @@ class CryptocurrencyController extends Controller
 
       $test = [
         'price' => $crypto->price,
-        'amount' => $user_fiat_money->amount,
         'msg' => 'transaction complete'
       ];
 
