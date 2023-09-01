@@ -62,13 +62,9 @@ Back-end Test
 ```bash
   /api/users/crypto (method: GET)
 ```
-- เติมเงิน (Fiat Money) เข้าไอดีของผู้ใช้คนนั้นๆ
-```bash
-  /api/fiat_money/topup/{id} (method: PUT) [id คือ id ของผู้ใช้ที่ต้องการเข้าถึง]
-```
 - เติมเงิน (Fiat Money) เข้าไอดีของผู้ใช้คนนั้นๆ (require: amount *ใส่ใน params)
 ```bash
-  /api/fiat_money/topup/{id} (method: PUT)
+  /api/fiat_money/topup/{id} (method: PUT) [id คือ id ของผู้ใช้ที่ต้องการเข้าถึง]
 ```
 - รายละเอียด Cryptocurrency ทั้งหมด
 ```bash
