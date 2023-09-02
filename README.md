@@ -18,6 +18,8 @@ Back-end Test
   (อย่าลืมเพิ่ม JWT_SECREAT และ JWT_EXPIRE_HOUR ใน .env)
 ```
 
+- Run web service (เช่น xampp, nginx, ...)
+
 - Run project
 
 ```bash
@@ -32,7 +34,7 @@ Back-end Test
 ```
 
 ## API Endpoint
- - คลิปทดสอบ API: ...
+ - คลิปทดสอบ API: https://www.youtube.com/watch?v=BI5Q58XoKM4
 
 - Register - สมัครสมาชิก (require: name, email, password, confirm_password)
 ```bash
